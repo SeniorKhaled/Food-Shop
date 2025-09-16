@@ -1,0 +1,397 @@
+/* ==========================================================================
+   Table of Contents
+   ==========================================================================
+   1. SETUP & GLOBAL STYLES
+      - CSS Variables
+      - Global Resets & Body Styles
+      - Typography
+      - Layout Helpers
+   2. REUSABLE COMPONENTS
+      - Buttons
+      - Cards (Product, Value, Testimonial)
+   3. SITE HEADER & NAVIGATION
+      - Main Header Layout
+      - Logo
+      - Desktop Navigation
+      - Hamburger Menu (Mobile)
+   4. SITE FOOTER
+   5. PAGE-SPECIFIC STYLES
+      - 5.1 Home Page (Hero, Featured, Story, Testimonials)
+      - 5.2 About Us Page (Hero, Story, Mission, Team)
+      - 5.3 Contact Page (New Layout)
+   6. RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. SETUP & GLOBAL STYLES
+   ========================================================================== */
+
+/* -- CSS Variables -- */
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #FFC107;
+    --accent-color-dark: #A62C2B;
+    --dark-color: #2c3e50;
+    --light-color: #f8f9fa;
+    --cream-bg: #fffaf0;
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+}
+
+/* -- Global Resets & Body Styles -- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    background: #fff;
+    color: #333;
+}
+
+/* -- Typography -- */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* -- Layout Helpers -- */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+/* ==========================================================================
+   2. REUSABLE COMPONENTS
+   ========================================================================== */
+
+/* -- Buttons -- */
+.btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Make buttons full-width by default */
+    text-align: center;
+}
+
+.btn:hover {
+    background: #45a049;
+}
+
+/* -- Cards -- */
+.product-card, .value-card, .testimonial-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.product-card {
+    padding: 15px; /* Override for product card */
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.product-card .btn {
+    width: auto; /* Allow product card buttons to be auto-width */
+}
+
+.testimonial-card {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+
+/* ==========================================================================
+   3. SITE HEADER & NAVIGATION
+   ========================================================================== */
+
+.main-header {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* -- Desktop Navigation -- */
+.main-nav ul { list-style: none; display: flex; }
+.main-nav li { margin-left: 25px; }
+.main-nav a { text-decoration: none; color: var(--dark-color); font-weight: 600; padding-bottom: 5px; transition: color 0.3s ease; }
+.main-nav a:hover { color: var(--primary-color); border-bottom: 2px solid var(--primary-color); }
+.main-nav a.active { color: var(--primary-color); font-weight: 700; border-bottom: 2px solid var(--primary-color); }
+
+/* -- Hamburger Menu (Mobile) -- */
+.nav-toggle { display: none; }
+.nav-toggle-label { display: none; cursor: pointer; position: relative; width: 30px; height: 25px; }
+.nav-toggle-label span, .nav-toggle-label span::before, .nav-toggle-label span::after { display: block; background: var(--dark-color); height: 3px; width: 100%; border-radius: 2px; position: absolute; transition: all 0.3s ease-in-out; }
+.nav-toggle-label span::before { content: ''; top: -8px; }
+.nav-toggle-label span::after { content: ''; top: 8px; }
+.nav-toggle:checked ~ .nav-toggle-label span { background: transparent; }
+.nav-toggle:checked ~ .nav-toggle-label span::before { transform: rotate(45deg); top: 0; }
+.nav-toggle:checked ~ .nav-toggle-label span::after { transform: rotate(-45deg); top: 0; }
+
+
+/* ==========================================================================
+   4. SITE FOOTER
+   ========================================================================== */
+
+.main-footer {
+    background: var(--dark-color);
+    color: #fff;
+    padding: 40px 0 20px;
+    margin-top: 40px;
+}
+
+.main-footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.main-footer h4 { font-size: 18px; color: var(--primary-color); margin-bottom: 10px; }
+.main-footer p { margin-bottom: 5px; font-size: 14px; }
+.footer-social a { color: #fff; text-decoration: none; font-size: 24px; margin-right: 15px; transition: color 0.3s ease; }
+.footer-social a:hover { color: var(--secondary-color); }
+.footer-copyright { text-align: center; border-top: 1px solid #555; padding-top: 20px; font-size: 14px; }
+
+
+/* ==========================================================================
+   5. PAGE-SPECIFIC STYLES
+   ========================================================================== */
+
+main {
+    padding-top: 80px;
+}
+
+/* -- 5.1 Home Page -- */
+.hero { background: var(--light-color); text-align: center; padding: 60px 0; background-image: url('../assets/images/hero-background.jpg'); background-size: cover; background-position: center; color: #fff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); }
+.hero h1 { font-size: 48px; color: #fff; }
+.hero p { font-size: 20px; margin-bottom: 20px; color: #fff; }
+.hero .btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.featured-products { padding: 40px 0 60px 0; }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.product-card img { max-width: 100%; height: 200px; object-fit: cover; margin-bottom: 10px; }
+.product-card h3 { font-size: 18px; }
+.product-card .price { font-size: 18px; font-weight: 600; color: var(--primary-color); margin-bottom: 15px; }
+
+.our-story-section { background: #fdfdfd; padding: 60px 0; }
+.story-content { display: flex; align-items: center; gap: 50px; }
+.story-text, .story-image { flex: 1; }
+.story-text h2 { font-size: 36px; color: #5ed362; margin-bottom: 20px; }
+.story-text p { margin-bottom: 15px; line-height: 1.7; color: #555; }
+.story-image img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+
+.testimonials-section { background: var(--light-color); padding: 60px 0; text-align: center; }
+.testimonials-section h2 { font-size: 36px; color: #5ed362; margin-bottom: 40px; }
+.quote-text { font-style: italic; color: #555; font-size: 16px; margin-bottom: 20px; }
+.testimonial-author { display: flex; align-items: center; }
+.author-avatar { width: 50px; height: 50px; border-radius: 50%; background: #e0e0e0; margin-right: 15px; }
+.author-name { font-weight: 600; font-family: var(--font-heading); }
+.author-title { font-size: 14px; color: #777; }
+
+/* -- 5.2 About Us Page -- */
+.about-hero { background-color: var(--dark-color); color: #fff; text-align: center; padding: 50px 0; }
+.about-hero h1 { font-size: 42px; }
+.about-page-section { padding: 60px 0; }
+.about-story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+.about-text-content h2 { font-size: 36px; color: #5ed362; }
+.about-image-content img { width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+.mission-section { background: var(--cream-bg); text-align: center; }
+.mission-statement { max-width: 800px; margin: 0 auto 50px auto; font-size: 18px; color: #555; }
+.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.value-card i { font-size: 40px; color: var(--accent-color-dark); margin-bottom: 15px; }
+.team-section { text-align: center; padding: 60px 0; }
+.team-section h2 { margin-bottom: 40px; font-size: 36px; }
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.team-member img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 4px solid #fff; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
+.team-member h3 { font-size: 20px; }
+.team-member .title { color: var(--primary-color); font-weight: 600; margin-bottom: 10px; }
+
+/* -- 5.3 Contact Page (NEW) -- */
+.contact-section {
+    background: var(--light-color);
+    padding: 60px 0;
+}
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Important for border-radius on children */
+}
+.contact-info {
+    background: var(--dark-color);
+    color: #fff;
+    padding: 40px;
+}
+.contact-info h2 {
+    color: #fff;
+}
+.contact-info p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+}
+.info-list {
+    list-style: none;
+    margin-bottom: 30px;
+}
+.info-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.9);
+}
+.info-list i {
+    font-size: 20px;
+    width: 30px;
+    color: var(--primary-color);
+}
+.contact-social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.contact-social-icons a:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.contact-form-container {
+    padding: 40px;
+}
+.new-contact-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.new-contact-form .form-group {
+    width: 100%;
+}
+.new-contact-form input,
+.new-contact-form textarea {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+.new-contact-form input:focus,
+.new-contact-form textarea:focus {
+    outline: none;
+    border-bottom-color: var(--primary-color);
+}
+.new-contact-form textarea {
+    resize: vertical;
+    margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================================================== */
+
+@media (max-width: 992px) {
+    /* -- Contact Page -- */
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    /* -- Navigation -- */
+    .nav-toggle-label { display: block; }
+    .main-nav { position: absolute; top: 100%; left: 0; background: #fff; width: 100%; max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out; }
+    .main-nav ul { flex-direction: column; align-items: center; padding: 20px 0; }
+    .main-nav li { margin: 10px 0; width: 100%; text-align: center; }
+    .main-nav a:hover, .main-nav a.active { border-bottom: none; }
+    .nav-toggle:checked ~ .main-nav { max-height: 500px; }
+    main { padding-top: 80px;  }
+
+    /* -- Home Page -- */
+    .hero h1 { font-size: 36px; }
+    .story-content { flex-direction: column; }
+    
+    /* -- About Page -- */
+    .about-story-grid { grid-template-columns: 1fr; }
+    .about-text-content { text-align: center; }
+    .about-image-content { order: -1; margin-bottom: 30px; }
+    .values-grid, .team-grid { grid-template-columns: 1fr; }
+    
+    /* -- Contact Page -- */
+    .new-contact-form .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    .new-contact-form .form-group {
+        margin-bottom: 20px;
+    }
+    
+    /* -- Footer -- */
+    .main-footer .footer-content { flex-direction: column; text-align: center; }
+    .footer-social { margin-top: 20px; }
+}
